@@ -6,19 +6,19 @@
   <meta name="keywords" content="San,JavaScript,Framework,MVVM,Component,Web">
   <link rel="shortcut icon" href="/san/img/favicon.ico" type="image/x-icon" />
   
-  <title>样式 | San</title>
+  <title>Style | San</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="样式处理是编写视图模板时常见的场景，涉及到的 attribute 有 class 和 style，它们的处理方式和其他元素 attribute 有一些区别。本文专门描述样式处理上常见的场景。 在开始前，先强调一下：San 并没有为 class 和 style 处理提供特殊的绑定语法，他们的处理与其它 attribute 方式一样。 class我们可能会设计一些用于表示状态的 class，这些 cl">
+  <meta name="description" content="Style processing is a common scenario when writing view templates. The attributes involved are class and style, and they are handled differently from other element attributes. This article specificall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="样式">
+<meta property="og:title" content="Style">
 <meta property="og:url" content="http://baidu.github.io/en/tutorial/style/index.html">
 <meta property="og:site_name" content="San">
-<meta property="og:description" content="样式处理是编写视图模板时常见的场景，涉及到的 attribute 有 class 和 style，它们的处理方式和其他元素 attribute 有一些区别。本文专门描述样式处理上常见的场景。 在开始前，先强调一下：San 并没有为 class 和 style 处理提供特殊的绑定语法，他们的处理与其它 attribute 方式一样。 class我们可能会设计一些用于表示状态的 class，这些 cl">
+<meta property="og:description" content="Style processing is a common scenario when writing view templates. The attributes involved are class and style, and they are handled differently from other element attributes. This article specificall">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-19T08:53:19.538Z">
+<meta property="og:updated_time" content="2019-02-18T07:31:20.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="样式">
-<meta name="twitter:description" content="样式处理是编写视图模板时常见的场景，涉及到的 attribute 有 class 和 style，它们的处理方式和其他元素 attribute 有一些区别。本文专门描述样式处理上常见的场景。 在开始前，先强调一下：San 并没有为 class 和 style 处理提供特殊的绑定语法，他们的处理与其它 attribute 方式一样。 class我们可能会设计一些用于表示状态的 class，这些 cl">
+<meta name="twitter:title" content="Style">
+<meta name="twitter:description" content="Style processing is a common scenario when writing view templates. The attributes involved are class and style, and they are handled differently from other element attributes. This article specificall">
   
     <link rel="alternate" href="/atom.xml" title="San" type="application/atom+xml">
   
@@ -152,7 +152,7 @@ var _hmt = _hmt || [];
 
   
     <h1 class="article-title" itemprop="name">
-      样式
+      Style
     </h1>
   
 
@@ -161,18 +161,18 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>样式处理是编写视图模板时常见的场景，涉及到的 attribute 有 class 和 style，它们的处理方式和其他元素 attribute 有一些区别。本文专门描述样式处理上常见的场景。</p>
-<p>在开始前，先强调一下：San 并没有为 class 和 style 处理提供特殊的绑定语法，他们的处理与其它 attribute 方式一样。</p>
-<h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><p>我们可能会设计一些用于表示状态的 class，这些 class 是否应该被添加到元素上，取决于某些数据的值。一个简单的场景是下拉列表的收起和展开状态切换。</p>
+        <p>Style processing is a common scenario when writing view templates. The attributes involved are class and style, and they are handled differently from other element attributes. This article specifically describes the common scenarios in style processing.</p>
+<p>Before starting, let’s emphasize that San does not provide a special binding syntax for class and style processing, and they handle the same way as other attributes.</p>
+<h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><p>We might design some class to represent the state, whether these classes should be added to the element, depending on the value of some data. A simple scenario is the unfolding and unfolding state of a drop-down list.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- template --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">"toggle"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list&#123;&#123;isHidden ? ' list-hidden' : ''&#125;&#125;"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Component</span></span><br><span class="line">san.defineComponent(&#123;</span><br><span class="line">    toggle: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> isHidden = <span class="keyword">this</span>.data.get(<span class="string">'isHidden'</span>);</span><br><span class="line">        <span class="keyword">this</span>.data.set(<span class="string">'isHidden'</span>, !isHidden);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>上面的例子中，isHidden 数据为真时，ul 具有 list-hidden 的 class，为假时不具有。</p>
-<p>San 在设计时，希望视图模板开发者像写正常的 attribute 一样编写 class 与 style，所以没有提供特殊的绑定语法。通过三元运算符的支持可以处理这样的场景。</p>
-<p>下面例子是一个根据状态不同，切换不同 class 的场景。</p>
+<p>In the above example, <code>list-hidden</code> class appears when <code>isHidden</code> is <code>true</code>, otherwise it is omitted</p>
+<p>When designing, San wants the view template developer to write class and style just like a normal attribute, so no special binding syntax is provided. This can be achieved by the ternary operator.</p>
+<p>The following example is a scenario where different classes are switched depending on the state.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list &#123;&#123;isHidden ? 'list-hidden' : 'list-visible'&#125;&#125;"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="style"><a href="#style" class="headerlink" title="style"></a>style</h2><p>对 style 的处理通常没有 class 那么复杂。我们很少会把样式信息写在数据中，但有时我们期望用户能定制一些界面样式，这个时候样式可能来源于数据。</p>
+<h2 id="style"><a href="#style" class="headerlink" title="style"></a>style</h2><p>The handling of <code>style</code> is usually not as complicated as <code>class</code>. We rarely write style information in the data, but sometimes we expect users to be able to customize some interface styles, at which point the style may be derived from data.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span></span></span><br><span class="line"><span class="tag">        <span class="attr">s-for</span>=<span class="string">"item, index in datasource"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"background: &#123;&#123;item.color&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"&#123;&#123;item.id == value ? 'selected' : ''&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">on-click</span>=<span class="string">"itemClick(index)"</span></span></span><br><span class="line"><span class="tag">    &gt;</span>&#123;&#123; item.title &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>此时需要警惕的是，数据可能并不存在，导致你设置的 style 并不是一个合法的样式。如果你不能保证数据一定有值，需要把样式名包含在插值中。</p>
+<p>The caveat is that the data may not exist, and the style you set is not a legal style. If you can’t guarantee that the data must have a value, you need to include the style name in the interpolation.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span></span></span><br><span class="line"><span class="tag">        <span class="attr">s-for</span>=<span class="string">"item, index in datasource"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"&#123;&#123;item.color ? 'background:' + item.color : ''&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"&#123;&#123;item.id == value ? 'selected' : ''&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">on-click</span>=<span class="string">"itemClick(index)"</span></span></span><br><span class="line"><span class="tag">    &gt;</span>&#123;&#123; item.title &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
@@ -189,7 +189,7 @@ var _hmt = _hmt || [];
 
 </main>
       <div class="footer-copyright">
-        &copy; 2018 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
+        &copy; 2019 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
     </div>
 </div>
 

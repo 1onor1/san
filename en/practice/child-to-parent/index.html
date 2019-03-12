@@ -6,19 +6,19 @@
   <meta name="keywords" content="San,JavaScript,Framework,MVVM,Component,Web">
   <link rel="shortcut icon" href="/san/img/favicon.ico" type="image/x-icon" />
   
-  <title>子组件如何通知父组件？ | San</title>
+  <title>Child-to-Parent Messaging | San</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="San的组件体系提供了事件功能，子组件可以通过调用组件的fire方法派发一个自定义事件，父组件在视图模板中通过on-事件名的方式或通过子组件实例的on方法就可以监听子组件派发的自定义事件，实现子组件到父组件的通信。 使用1234567891011121314151617181920212223242526272829var childComponent = san.defineComponent(">
+  <meta name="description" content="San components provide event mechanism. By calling fire method child component can dispatch a custom event, which will be received by the parent component via the on-“event name” directive or on metho">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子组件如何通知父组件？">
+<meta property="og:title" content="Child-to-Parent Messaging">
 <meta property="og:url" content="http://baidu.github.io/en/practice/child-to-parent/index.html">
 <meta property="og:site_name" content="San">
-<meta property="og:description" content="San的组件体系提供了事件功能，子组件可以通过调用组件的fire方法派发一个自定义事件，父组件在视图模板中通过on-事件名的方式或通过子组件实例的on方法就可以监听子组件派发的自定义事件，实现子组件到父组件的通信。 使用1234567891011121314151617181920212223242526272829var childComponent = san.defineComponent(">
+<meta property="og:description" content="San components provide event mechanism. By calling fire method child component can dispatch a custom event, which will be received by the parent component via the on-“event name” directive or on metho">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-19T08:53:19.519Z">
+<meta property="og:updated_time" content="2019-03-12T06:39:16.131Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="子组件如何通知父组件？">
-<meta name="twitter:description" content="San的组件体系提供了事件功能，子组件可以通过调用组件的fire方法派发一个自定义事件，父组件在视图模板中通过on-事件名的方式或通过子组件实例的on方法就可以监听子组件派发的自定义事件，实现子组件到父组件的通信。 使用1234567891011121314151617181920212223242526272829var childComponent = san.defineComponent(">
+<meta name="twitter:title" content="Child-to-Parent Messaging">
+<meta name="twitter:description" content="San components provide event mechanism. By calling fire method child component can dispatch a custom event, which will be received by the parent component via the on-“event name” directive or on metho">
   
     <link rel="alternate" href="/atom.xml" title="San" type="application/atom+xml">
   
@@ -152,7 +152,7 @@ var _hmt = _hmt || [];
 
   
     <h1 class="article-title" itemprop="name">
-      子组件如何通知父组件？
+      Child-to-Parent Messaging
     </h1>
   
 
@@ -161,10 +161,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>San的组件体系提供了事件功能，子组件可以通过调用组件的<a href="/san/doc/api/#fire">fire</a>方法派发一个自定义事件，父组件在视图模板中通过on-事件名的方式或通过子组件实例的on方法就可以监听子组件派发的自定义事件，实现子组件到父组件的通信。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> childComponent = san.defineComponent(&#123;    </span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;button on-click="onClick"&gt;change&lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    </span><br><span class="line">    onClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 向父组件派发一个child-change事件</span></span><br><span class="line">        <span class="keyword">this</span>.fire(<span class="string">'child-change'</span>, <span class="string">'from child'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> parentComponent = san.defineComponent(&#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">      <span class="string">'my-child'</span>: <span class="string">'childComponent'</span></span><br><span class="line">    &#125;,</span><br><span class="line">  </span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;my-child on-child-change="changeHandler($event)"/&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">  </span><br><span class="line">    changeHandler: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 事件处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>说明: 我们知道使用「双向绑定」可以将子组件内部的数据变化同步给父组件，但除了类表单组件外，其它情况不建议使用「双向绑定」的方式来达到通知父组件的目的。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p></p><p data-height="265" data-theme-id="0" data-slug-hash="wqrGLy" data-default-tab="js,result" data-user="naatgit" data-embed-version="2" data-pen-title="child-to-parent" class="codepen">See the Pen <a href="https://codepen.io/naatgit/pen/wqrGLy/" target="_blank" rel="noopener">child-to-parent</a> by funa (<a href="https://codepen.io/naatgit" target="_blank" rel="noopener">@naatgit</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+        <p>San components provide event mechanism. By calling <a href="/san/doc/api/#fire">fire</a> method child component can dispatch a custom event, which will be received by the parent component via the on-“event name” directive or <strong>on</strong> method on the child component instance. That is child-to-parent component messaging.</p>
+<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> childComponent = san.defineComponent(&#123;    </span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;button on-click="onClick"&gt;change&lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">    </span><br><span class="line">    onClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Dispatch a child-change event</span></span><br><span class="line">        <span class="keyword">this</span>.fire(<span class="string">'child-change'</span>, <span class="string">'from child'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> parentComponent = san.defineComponent(&#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">      <span class="string">'my-child'</span>: <span class="string">'childComponent'</span></span><br><span class="line">    &#125;,</span><br><span class="line">  </span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;my-child on-child-change="changeHandler($event)"/&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>,</span><br><span class="line">  </span><br><span class="line">    changeHandler: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// event handling</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Note: Two-way data binding can also achieve child-to-parent messaging. But it’s not recommended to notify the parent component using two-way data binding other than use cases like form components.</p>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><p></p><p data-height="265" data-theme-id="0" data-slug-hash="wqrGLy" data-default-tab="js,result" data-user="naatgit" data-embed-version="2" data-pen-title="child-to-parent" class="codepen">See the Pen <a href="https://codepen.io/naatgit/pen/wqrGLy/" target="_blank" rel="noopener">child-to-parent</a> by funa (<a href="https://codepen.io/naatgit" target="_blank" rel="noopener">@naatgit</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
       
@@ -173,7 +173,7 @@ var _hmt = _hmt || [];
 </article>
 
 <aside class="toc-wrap">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Usage"><span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo"><span class="toc-text">Demo</span></a></li></ol>
   <a href="#" class="toc-top">
     回到顶部
   </a>
@@ -181,7 +181,7 @@ var _hmt = _hmt || [];
 
 </main>
       <div class="footer-copyright">
-        &copy; 2018 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
+        &copy; 2019 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
     </div>
 </div>
 

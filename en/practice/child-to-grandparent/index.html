@@ -6,19 +6,19 @@
   <meta name="keywords" content="San,JavaScript,Framework,MVVM,Component,Web">
   <link rel="shortcut icon" href="/san/img/favicon.ico" type="image/x-icon" />
   
-  <title>子组件与更高层组件如何通信？ | San</title>
+  <title>How child components communicate with higher layer components | San</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用子组件通过dispatch方法向组件树上层派发消息。 12345678910111213class Son extends san.Component &amp;#123;    static template = `        &amp;lt;div&amp;gt;            &amp;lt;button on-click=&apos;onClick&apos;&amp;gt;向上传递&amp;lt;/button&amp;gt;        &amp;l">
+  <meta name="description" content="usageThe child component dispatches messages to the upper layer of the component tree via the dispatch method. 12345678910111213class Son extends san.Component &amp;#123;    static template = `        &amp;lt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子组件与更高层组件如何通信？">
+<meta property="og:title" content="How child components communicate with higher layer components">
 <meta property="og:url" content="http://baidu.github.io/en/practice/child-to-grandparent/index.html">
 <meta property="og:site_name" content="San">
-<meta property="og:description" content="使用子组件通过dispatch方法向组件树上层派发消息。 12345678910111213class Son extends san.Component &amp;#123;    static template = `        &amp;lt;div&amp;gt;            &amp;lt;button on-click=&apos;onClick&apos;&amp;gt;向上传递&amp;lt;/button&amp;gt;        &amp;l">
+<meta property="og:description" content="usageThe child component dispatches messages to the upper layer of the component tree via the dispatch method. 12345678910111213class Son extends san.Component &amp;#123;    static template = `        &amp;lt">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-19T08:53:19.519Z">
+<meta property="og:updated_time" content="2019-02-18T07:31:20.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="子组件与更高层组件如何通信？">
-<meta name="twitter:description" content="使用子组件通过dispatch方法向组件树上层派发消息。 12345678910111213class Son extends san.Component &amp;#123;    static template = `        &amp;lt;div&amp;gt;            &amp;lt;button on-click=&apos;onClick&apos;&amp;gt;向上传递&amp;lt;/button&amp;gt;        &amp;l">
+<meta name="twitter:title" content="How child components communicate with higher layer components">
+<meta name="twitter:description" content="usageThe child component dispatches messages to the upper layer of the component tree via the dispatch method. 12345678910111213class Son extends san.Component &amp;#123;    static template = `        &amp;lt">
   
     <link rel="alternate" href="/atom.xml" title="San" type="application/atom+xml">
   
@@ -152,7 +152,7 @@ var _hmt = _hmt || [];
 
   
     <h1 class="article-title" itemprop="name">
-      子组件与更高层组件如何通信？
+      How child components communicate with higher layer components
     </h1>
   
 
@@ -161,11 +161,11 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>子组件通过<strong>dispatch</strong>方法向组件树上层派发消息。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">san</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> template = <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;button on-click='onClick'&gt;向上传递&lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line"></span><br><span class="line">    onClick() &#123;</span><br><span class="line">        <span class="keyword">const</span> value = <span class="keyword">this</span>.data.get(<span class="string">'value'</span>);</span><br><span class="line">        <span class="comment">// 向组件树的上层派发消息</span></span><br><span class="line">        <span class="keyword">this</span>.dispatch(<span class="string">'son-clicked'</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>消息将沿着组件树向上传递，直到遇到第一个处理该消息的组件，则停止。通过 <strong>messages</strong> 可以声明组件要处理的消息。<strong>messages</strong> 是一个对象，key 是消息名称，value 是消息处理的函数，接收一个包含 target(派发消息的组件) 和 value(消息的值) 的参数对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GrandParent</span> <span class="keyword">extends</span> <span class="title">san</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> template = <span class="string">'&lt;div&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 声明组件要处理的消息</span></span><br><span class="line">    <span class="keyword">static</span> messages = &#123;</span><br><span class="line">        <span class="string">'son-clicked'</span>: <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// arg.target 可以拿到派发消息的组件</span></span><br><span class="line">            <span class="comment">// arg.value 可以拿到派发消息的值</span></span><br><span class="line">            <span class="keyword">this</span>.data.set(<span class="string">'value'</span>, arg.value);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p></p><p data-height="265" data-theme-id="0" data-slug-hash="oeBmvZ" data-default-tab="js,result" data-user="jiangjiu8357" data-embed-version="2" data-pen-title="higher-communication" class="codepen">See the Pen <a href="https://codepen.io/jiangjiu8357/pen/oeBmvZ/" target="_blank" rel="noopener">higher-communication</a> by Swan (<a href="https://codepen.io/jiangjiu8357" target="_blank" rel="noopener">@jiangjiu8357</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+        <h4 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h4><p>The child component dispatches messages to the upper layer of the component tree via the <strong>dispatch</strong> method.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">san</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> template = <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;button on-click='onClick'&gt;pass up&lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line"></span><br><span class="line">    onClick() &#123;</span><br><span class="line">        <span class="keyword">const</span> value = <span class="keyword">this</span>.data.get(<span class="string">'value'</span>);</span><br><span class="line">        <span class="comment">// Distribute messages to the upper level of the component tree</span></span><br><span class="line">        <span class="keyword">this</span>.dispatch(<span class="string">'son-clicked'</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>The message will be passed up the component tree until it encounters the first component that processes the message. Use <strong>messages</strong> to declare the message the component will process. <strong>messages</strong> is an object, the key is the name of a message, and value is the processing function of a message, which receives an object parameter containing <code>target</code> (the component that dispatches the message) and <code>value</code>(the value of the message).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GrandParent</span> <span class="keyword">extends</span> <span class="title">san</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> template = <span class="string">'&lt;div&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Declare messages that the component will process</span></span><br><span class="line">    <span class="keyword">static</span> messages = &#123;</span><br><span class="line">        <span class="string">'son-clicked'</span>: <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// arg.target can get the component dispatched by the message</span></span><br><span class="line">            <span class="comment">// arg.value can get the value of the message</span></span><br><span class="line">            <span class="keyword">this</span>.data.set(<span class="string">'value'</span>, arg.value);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="examples"><a href="#examples" class="headerlink" title="examples"></a>examples</h4><p></p><p data-height="265" data-theme-id="0" data-slug-hash="oeBmvZ" data-default-tab="js,result" data-user="jiangjiu8357" data-embed-version="2" data-pen-title="higher-communication" class="codepen">See the Pen <a href="https://codepen.io/jiangjiu8357/pen/oeBmvZ/" target="_blank" rel="noopener">higher-communication</a> by Swan (<a href="https://codepen.io/jiangjiu8357" target="_blank" rel="noopener">@jiangjiu8357</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
       
@@ -174,7 +174,7 @@ var _hmt = _hmt || [];
 </article>
 
 <aside class="toc-wrap">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#usage"><span class="toc-text">usage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#examples"><span class="toc-text">examples</span></a></li></ol>
   <a href="#" class="toc-top">
     回到顶部
   </a>
@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
 
 </main>
       <div class="footer-copyright">
-        &copy; 2018 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
+        &copy; 2019 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
     </div>
 </div>
 

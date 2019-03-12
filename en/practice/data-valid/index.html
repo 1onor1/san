@@ -6,19 +6,19 @@
   <meta name="keywords" content="San,JavaScript,Framework,MVVM,Component,Web">
   <link rel="shortcut icon" href="/san/img/favicon.ico" type="image/x-icon" />
   
-  <title>什么东西可以保存在data里？ | San</title>
+  <title>What Content is Suitable for the Data? | San</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在 San 的文档中写道：” San 是一个 MVVM 的组件框架，通过 San 的视图引擎能够让用户只用操作数据，视图自动更新”。这里要说的 data 指的就是用户操作的”数据”。data 里应该存与视图相关的数据状态。 data 中保存的数据对于一个组件，data 数据的来源可分为如下两种：1、组件自身定义的数据;2、从父组件中传入的数据;3、computed 中定义的数据;以上三种，我们都可">
+  <meta name="description" content="The introduction of san says: “San is a MVVM component framework. With the help of san view engine, one can focus on the data only and views will be updated automatically.” We’re going to discuss the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么东西可以保存在data里？">
+<meta property="og:title" content="What Content is Suitable for the Data?">
 <meta property="og:url" content="http://baidu.github.io/en/practice/data-valid/index.html">
 <meta property="og:site_name" content="San">
-<meta property="og:description" content="在 San 的文档中写道：” San 是一个 MVVM 的组件框架，通过 San 的视图引擎能够让用户只用操作数据，视图自动更新”。这里要说的 data 指的就是用户操作的”数据”。data 里应该存与视图相关的数据状态。 data 中保存的数据对于一个组件，data 数据的来源可分为如下两种：1、组件自身定义的数据;2、从父组件中传入的数据;3、computed 中定义的数据;以上三种，我们都可">
+<meta property="og:description" content="The introduction of san says: “San is a MVVM component framework. With the help of san view engine, one can focus on the data only and views will be updated automatically.” We’re going to discuss the">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-19T08:53:19.519Z">
+<meta property="og:updated_time" content="2019-02-18T07:31:20.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什么东西可以保存在data里？">
-<meta name="twitter:description" content="在 San 的文档中写道：” San 是一个 MVVM 的组件框架，通过 San 的视图引擎能够让用户只用操作数据，视图自动更新”。这里要说的 data 指的就是用户操作的”数据”。data 里应该存与视图相关的数据状态。 data 中保存的数据对于一个组件，data 数据的来源可分为如下两种：1、组件自身定义的数据;2、从父组件中传入的数据;3、computed 中定义的数据;以上三种，我们都可">
+<meta name="twitter:title" content="What Content is Suitable for the Data?">
+<meta name="twitter:description" content="The introduction of san says: “San is a MVVM component framework. With the help of san view engine, one can focus on the data only and views will be updated automatically.” We’re going to discuss the">
   
     <link rel="alternate" href="/atom.xml" title="San" type="application/atom+xml">
   
@@ -152,7 +152,7 @@ var _hmt = _hmt || [];
 
   
     <h1 class="article-title" itemprop="name">
-      什么东西可以保存在data里？
+      What Content is Suitable for the Data?
     </h1>
   
 
@@ -161,10 +161,16 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 San 的文档中写道：” San 是一个 MVVM 的组件框架，通过 San 的视图引擎能够让用户只用操作数据，视图自动更新”。这里要说的 data 指的就是用户操作的”数据”。data 里应该存与视图相关的数据状态。</p>
-<h4 id="data-中保存的数据"><a href="#data-中保存的数据" class="headerlink" title="data 中保存的数据"></a>data 中保存的数据</h4><p>对于一个组件，data 数据的来源可分为如下两种：<br>1、组件自身定义的数据;<br>2、从父组件中传入的数据;<br>3、computed 中定义的数据;<br>以上三种，我们都可以通过<code>this.data.get()</code>方法获取。</p>
-<p>组件自身定义的数据（状态）保存在该组件的 data 中，可以对其进行修改从而影响当前组件以及子组件的视图。从父组件传入的数据，可以从 data 中获取，但通常我们只是使用这个数据，如果要更改从父组件传入的数据，虽然可以直接在组件内更改，但通常的做法是到该数据初始化的地方去更改。</p>
-<h4 id="data-数据应该是纯数据"><a href="#data-数据应该是纯数据" class="headerlink" title="data 数据应该是纯数据"></a>data 数据应该是纯数据</h4><p>data 数据可以是字符串、数值、 数组、原生对象这样的纯数据。对于正则表达式，纯函数这样的，如果是在组件自身使用，则需要外部引入，或者作为组件的方法。 但如果要传递给子组件使用，则可以存放在 data 中。 例如，在表单组件中，我们可能会在业务层自定义验证方法，传入子组件使用。</p>
+        <p>The introduction of san says: “San is a MVVM component framework. With the help of san view engine, one can focus on the data only and views will be updated automatically.” We’re going to discuss the “data” to be manipulated. The contents of the “data” are expected to be view related states only.</p>
+<h4 id="Sources-of-the-Data"><a href="#Sources-of-the-Data" class="headerlink" title="Sources of the Data"></a>Sources of the Data</h4><p>For a component, the source of the data can be:</p>
+<ol>
+<li>Data defined by the component itself;</li>
+<li>Data passed in from the parent component;</li>
+<li>Data defined by the computed property.</li>
+</ol>
+<p>All of the above data can be accessed by <code>this.data.get()</code> method.</p>
+<p>The data defined by the component itself can be modified directly to update the view of the component and it’s descendant components. The data passed in from the parent component are usually for read purposes only. Though we can also change these data in child components, the better practice is to change it in the component where the data is initially created.</p>
+<h4 id="Contents-of-the-Data"><a href="#Contents-of-the-Data" class="headerlink" title="Contents of the Data"></a>Contents of the Data</h4><p>The entries in the data can be of primitive types like String, Number, Array, plain Objects. Other objects like regular expressions and functions are not expected to be part of the data and can be imported or implemented inside the component instead. There’s an exception when we need to pass objects to the child components, such as passing custom form validation functions to the child components.</p>
 
       
     </div>
@@ -172,7 +178,7 @@ var _hmt = _hmt || [];
 </article>
 
 <aside class="toc-wrap">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#data-中保存的数据"><span class="toc-text">data 中保存的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#data-数据应该是纯数据"><span class="toc-text">data 数据应该是纯数据</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sources-of-the-Data"><span class="toc-text">Sources of the Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Contents-of-the-Data"><span class="toc-text">Contents of the Data</span></a></li></ol>
   <a href="#" class="toc-top">
     回到顶部
   </a>
@@ -180,7 +186,7 @@ var _hmt = _hmt || [];
 
 </main>
       <div class="footer-copyright">
-        &copy; 2018 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
+        &copy; 2019 <a target="_blank" href="http://efe.baidu.com">Baidu EFE</a>
     </div>
 </div>
 
