@@ -64,20 +64,7 @@ var _hmt = _hmt || [];
 
     <div class="header-content">
         <nav class="header-content-nav">
-        <div class="search-input">
-        <style type="text/css">
-      /*  #san-query-input {
-            background-color: red;
-        }*/
-            #san-query-input::-webkit-input-placeholder{
-            　　color: #000 !important;
-            　　}
-        </style>
-         <input type="text" id="san-query-input" placeholder="Search" class="search-query st-default-search-input"/>
-                    <svg t="1502693727354" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1431" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M817.243 742.793l152.765 153.11-76.72 76.547-152.765-153.11zM685.498 258.674c-118.486-118.541-310.63-118.541-429.171 0-118.542 118.542-118.542 310.686 0 429.172 54.911 54.928 130.781 88.903 214.586 88.903 83.804 0 159.674-33.977 214.585-88.903 54.928-54.913 88.903-130.782 88.903-214.587 0-83.804-33.977-159.674-88.903-214.585zM190.258 753.915c-71.856-71.838-116.303-171.092-116.303-280.727 0-219.233 177.723-396.956 396.956-396.956s396.956 177.723 396.956 396.956c0 109.635-44.446 208.89-116.302 280.726-71.833 71.814-171.057 116.229-280.656 116.229s-208.822-44.415-280.656-116.229l0.003 0.001z" p-id="1432"></path></svg>
-                 </div>   
             <ul>
-     
                 <li><a class="router" href="/san/tutorial/start/">教程</a>
                 <li><a class="router" href="/san/practice/">指南</a>
                 <li><a class="router" href="/san/example/">示例</a>
@@ -88,6 +75,11 @@ var _hmt = _hmt || [];
                 <li>
                 </li>
             </ul>
+            <div class="search-input">
+                <input type="text" id="san-query-input" placeholder="Search" class="search-query st-default-search-input"/>
+                <svg t="1502693727354" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1431" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M817.243 742.793l152.765 153.11-76.72 76.547-152.765-153.11zM685.498 258.674c-118.486-118.541-310.63-118.541-429.171 0-118.542 118.542-118.542 310.686 0 429.172 54.911 54.928 130.781 88.903 214.586 88.903 83.804 0 159.674-33.977 214.585-88.903 54.928-54.913 88.903-130.782 88.903-214.587 0-83.804-33.977-159.674-88.903-214.585zM190.258 753.915c-71.856-71.838-116.303-171.092-116.303-280.727 0-219.233 177.723-396.956 396.956-396.956s396.956 177.723 396.956 396.956c0 109.635-44.446 208.89-116.302 280.726-71.833 71.814-171.057 116.229-280.656 116.229s-208.822-44.415-280.656-116.229l0.003 0.001z" p-id="1432"></path></svg>
+            </div>
+            <a class="header-lang" href="/san/en/tutorial/component/">EN</a>
         </nav>
     </div>
 </header>
@@ -315,9 +307,7 @@ var _hmt = _hmt || [];
 
 <aside class="toc-wrap">
   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#组件定义"><span class="toc-text">组件定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图"><span class="toc-text">视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#视图模板"><span class="toc-text">视图模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插槽"><span class="toc-text">插槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#el"><span class="toc-text">el</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据"><span class="toc-text">数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取数据"><span class="toc-text">获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作数据"><span class="toc-text">操作数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始数据"><span class="toc-text">初始数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算数据"><span class="toc-text">计算数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤器"><span class="toc-text">过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内置过滤器"><span class="toc-text">内置过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定制过滤器"><span class="toc-text">定制过滤器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件层级"><span class="toc-text">组件层级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#components"><span class="toc-text">components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#owner-与-parent"><span class="toc-text">owner 与 parent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ref"><span class="toc-text">ref</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息"><span class="toc-text">消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态子组件"><span class="toc-text">动态子组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异步组件"><span class="toc-text">异步组件</span></a></li></ol>
-  <a href="#" class="toc-top">
-    回到顶部
-  </a>
+  <a href="#" class="toc-top">回到顶部</a>
 </aside>
 
 </main>
